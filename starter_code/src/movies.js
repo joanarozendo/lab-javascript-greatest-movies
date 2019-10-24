@@ -1,14 +1,60 @@
 /* eslint no-restricted-globals: 'off' */
 
-// Iteration 1: All rates average - Get the average of all rates with 2 decimals
+// ITERATION 1
 
-// Iteration 2: Drama movies - Get the average of Drama Movies
+const calculateAverageMovieRate = array => {
+  const sumMovies = array.reduce((accumulator, value) => {
+  return (accumulator + value.rate);
+  }, 0);
+  return (sumMovies/array.length);
+}
 
-// Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
+console.log(calculateAverageMovieRate(MOVIES));
+
+// ITERATION 2
+
+function calculateAverageDramaRate(array) {
+  const dramaMovies = array.filter((value) => {
+    return value.genre.includes('Drama')
+  });
+  if (dramaMovies === 0) {
+    return 0;
+  } else {
+    return calculateAverageMovieRate(dramaMovies);
+  }
+}
+
+// ITERATION 3
+
+function orderByYear (array) {
+  array.sort((a, b) => a.year > b.year ? 1 : -1);
+  return array;
+}
 
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
 
+/* function countSpielbergDramaMovies(array) {
+  const spielbergMovies = array.filter((value) => {
+    return value.director.includes('Steven Spielberg')
+  });
+  if (dramaMovies === 0) {
+    return 0;
+  } else {
+    return ();
+  }
+} */
+
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
+ 
+function orderAlphabetically (array) {
+  const newArray = [ ...array ].sort((a, b) => a.title > b.title ? 1 : -1);
+  const list = newArray.map(value);
+  return list.slice(0, 19);
+}
+
+console.log(orderAlphabetically(MOVIES));
+
+//sort, ...,map, slice
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
